@@ -1,0 +1,47 @@
+<!-- templates/book_vehicle/booking_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Booking List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Vehicle </th>
+                    <th>Customer Name</th>
+                    <th>email </th>
+                    <th>phone_number </th>
+                    <th>pickup_date </th>
+                    <th>dropoff_date </th>
+                    <th>total_amount </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in booking %}
+                <tr>
+                    <td><b> </b>{{ booking.vehicle }}</td>
+                    <td>{{ booking.user_name }}</td>
+                    <td>{{ booking.email }}</td>
+                    <td>{{ booking.phone_number }}</td>
+                    <td>{{ booking.pickup_date }}</td>
+                    <td>{{ booking.dropoff_date }}</td>
+                    <td>{{ booking.total_amount }}</td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS and dependencies (optional for some features) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

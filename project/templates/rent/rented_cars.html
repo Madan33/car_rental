@@ -1,0 +1,58 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Rented Cars{% endblock title %}
+
+{% block body %}
+<main role="main" style="background-color: rgb(200, 200, 200)">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="font-size: 50px">Rented Cars</h1>
+            <p style="font-size: 25px; margin-top: 30px">List of cars currently rented and by whom</p>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <div class="row">
+            {% for car in rented_cars %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ car.image.url }}" alt="car" class="d-block w-100" height="225">
+                    <div class="card-body">
+                        <h4 style="text-align: center">{{ car.car_name }}</h4>
+                        <p class="card-text">{{ car.car_desc }}</p>
+                        <p>Price per Day: {{ car.price }}</p>
+                        <p>
+                            Rented by: {{ car.rent.customer_name }}
+                            <a href="#" onclick="toggleDetails('{{ car.id }}'); return false;">Show Details</a>
+                        </p>
+                        
+                        <div id="details-{{ car.id }}" style="display: none;">
+                            <ul>
+                                {% for rent_instance in rented_car_instances %}
+                                    <li>
+                                        <strong>Rent ID:</strong> {{ rent_instance.id }} <br>
+                                        <strong>Customer Name:</strong> {{ rent_instance.customer_name }} <br>
+                                        <strong>Phone:</strong> {{ rent_instance.phone }} <br>
+                                        <strong>Car:</strong> {{ rent_instance.car }} <br>
+                                    
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script>
+    // Inline JavaScript for toggling details visibility
+    function toggleDetails(carId) {
+        const detailsDiv = document.getElementById(`details-${carId}`);
+        detailsDiv.style.display = detailsDiv.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+{% endblock body %}

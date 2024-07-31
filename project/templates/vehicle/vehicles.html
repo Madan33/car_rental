@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Cars{% endblock title %}
+
+{% load static %}
+
+{% block body %}
+<main role="main" style="background-color: rgb(200, 200, 200)">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="font-size: 50px">Welcome {{ request.user }} !!</h1>
+            <p style="font-size: 25px; margin-top: 30px">Get wide varieties of cars at affordable prices!!</p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for car in vehicles %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ car.image.url }}" alt="car" class="d-block w-100" height="225">
+                        <div class="card-body">
+                            <h4 style="text-align: center">{{ car.car_name }}</h4>
+                            <p class="card-text">{{ car.car_desc }}</p>
+                            <p id="{{ car.car_id }}">Price per Day: {{ car.price }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'rent_car' pk=car.pk %}" class="btn btn-sm btn-dark">Rent</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock body %}

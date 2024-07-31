@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Vehicle</title>
+</head>
+<body>
+    <h1>Book Vehicle: {{ vehicle }}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="id_user_name">Your Name:</label>
+        {{ form.user_name }}
+        <br>
+        
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        <br>
+        
+        <label for="id_phone_number">Phone Number:</label>
+        {{ form.phone_number }}
+        <br>
+        
+        <label for="id_pickup_date">Pickup Date:</label>
+        {{ form.pickup_date }}
+        <br>
+        
+        <label for="id_dropoff_date">Dropoff Date:</label>
+        {{ form.dropoff_date }}
+        <br>
+        
+        <label for="id_total_amount">Total Amount:</label>
+        {{ form.total_amount }}
+        <br>
+        
+        <button type="submit">Book</button>
+    </form>
+    
+</body>
+</html>

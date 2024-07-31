@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Booking List</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #e0dcdc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .city-bangalore {
+            background-color: #b0c4de;
+            margin-bottom: 20px;
+        }
+
+        .city-mumbai {
+            background-color: #98fb98;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Booking List</h1>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="city-box city-Hyd">
+                    <h3>Hyderabad</h3>
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Car</th>
+                                <th>Days for Rent</th>
+                                <th>Date</th>
+                                <th>Location From</th>
+                                <th>Location To</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for Order in bookings %}
+                                {% if Order.city == 'Hyd' %}
+                                    <tr>
+                                        <td>{{ Order.name }}</td>
+                                        <td>{{ Order.email }}</td>
+                                        <td>{{ Order.phone }}</td>
+                                        <td>{{ Order.address }}</td>
+                                        <td>{{ Order.cars }}</td>
+                                        <td>{{ Order.days_for_rent }}</td>
+                                        <td>{{ Order.date }}</td>
+                                        <td>{{ Order.loc_from }}</td>
+                                        <td>{{ Order.loc_to }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="city-box city-Tirupati">
+                    <h3>Tirupati</h3>
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Car</th>
+                                <th>Days for Rent</th>
+                                <th>Date</th>
+                                <th>Location From</th>
+                                <th>Location To</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for Order in bookings %}
+                                {% if Order.city == 'tirupati' %}
+                                    <tr>
+                                        <td>{{ Order.name }}</td>
+                                        <td>{{ Order.email }}</td>
+                                        <td>{{ Order.phone }}</td>
+                                        <td>{{ Order.address }}</td>
+                                        <td>{{ Order.cars }}</td>
+                                        <td>{{ Order.days_for_rent }}</td>
+                                        <td>{{ Order.date }}</td>
+                                        <td>{{ Order.loc_from }}</td>
+                                        <td>{{ Order.loc_to }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="city-box city-Tirupati">
+            <h3>Nellore</h3>
+            <table class="table table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Car</th>
+                        <th>Days for Rent</th>
+                        <th>Date</th>
+                        <th>Location From</th>
+                        <th>Location To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Order in bookings %}
+                        {% if Order.city == 'Nellore' %}
+                            <tr>
+                                <td>{{ Order.name }}</td>
+                                <td>{{ Order.email }}</td>
+                                <td>{{ Order.phone }}</td>
+                                <td>{{ Order.address }}</td>
+                                <td>{{ Order.cars }}</td>
+                                <td>{{ Order.days_for_rent }}</td>
+                                <td>{{ Order.date }}</td>
+                                <td>{{ Order.loc_from }}</td>
+                                <td>{{ Order.loc_to }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+    <nav aria-label="Page navigation">
+        <div class="text-center">
+            <ul class="pagination">
+                {% if bookings.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ bookings.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+    
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ bookings.number }}</a>
+                </li>
+    
+                {% if bookings.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ bookings.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ bookings.paginator.num_pages }}">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+
+    <!-- Bootstrap JS and dependencies (optional if needed) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

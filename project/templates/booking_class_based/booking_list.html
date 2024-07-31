@@ -1,0 +1,44 @@
+<!-- booking_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking List</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Optional: Add custom CSS for specific styling */
+        .booking-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Booking List</h1>
+        <div class="mt-3">
+            <ul class="list-group">
+                {% for booking in bookings %}
+                    <li class="list-group-item booking-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>
+                                <a href="{% url 'booking-detail' booking.pk %}">
+                                    {{ booking.user_name }}
+                                </a> - {{ booking.vehicle }} - {{ booking.pickup_date|date:"Y-m-d" }} to {{ booking.dropoff_date|date:"Y-m-d" }}
+                            </span>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No bookings yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="btn btn-primary mt-3" href="{% url 'booking-create' %}">Create New Booking</a>
+    </div>
+    
+    <!-- Include Bootstrap JS and dependencies if needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Optionally include Popper.js for Bootstrap dropdowns -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+</html>

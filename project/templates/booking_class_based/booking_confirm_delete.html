@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Booking</title>
+</head>
+<body>
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete booking "{{ booking.user_name }}"?</p>
+    <form action="{% url 'booking-delete' booking.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <a href="{% url 'booking-detail' booking.pk %}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'ride/ride_base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Edit Ride</h2>
+    <form method="POST" class="mt-4">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-primary">Update Ride</button>
+    </form>
+  </div>
+{% endblock %}

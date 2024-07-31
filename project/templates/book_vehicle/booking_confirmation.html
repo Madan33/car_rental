@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Optional: Custom CSS for additional styling */
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <h1 class="card-header">Booking Confirmation</h1>
+            <div class="card-body">
+                <p class="card-text">Thank you for booking {{ booking.vehicle.name }}!</p>
+                <h5 class="card-title">Booking Details:</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">User: {{ booking.user_name }}</li>
+                    <li class="list-group-item">Email: {{ booking.email }}</li>
+                    <li class="list-group-item">Phone: {{ booking.phone_number }}</li>
+                    <li class="list-group-item">Pickup Date: {{ booking.pickup_date }}</li>
+                    <li class="list-group-item">Dropoff Date: {{ booking.dropoff_date }}</li>
+                    <li class="list-group-item">Total Amount: Rs {{ booking.total_amount }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional: If you need Bootstrap JavaScript features) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Detail</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Notifications for {{ notification.booking.user_name }} - {{ notification.booking.vehicle.name }}</h1>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for notification in notification.booking.notification_set.all %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>{{ notification.message }}</span>
+                                <span class="badge badge-primary badge-pill">{{ notification.timestamp }}</span>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No notifications found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for some components that require JS) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

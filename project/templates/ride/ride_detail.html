@@ -1,0 +1,28 @@
+
+{% extends 'ride/ride_base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4 mb-4">Ride Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h4><b>Ride ID: {{ ride.id }}</b></h4>
+      <p><b> Status: {{ ride.status }}</b></p>
+      <h4><b> Passenger Name : {{ ride.passenger }}</b></h4>
+      <p><b> Start Location: {{ ride.start_location }}</b></p>
+      <p><b> End Location: {{ ride.end_location }}</b></p>
+      {% if ride.driver %}
+      <p><b> Driver: {{ ride.driver }}</b></p>
+      <p><b>Date Accepted: {{ ride.date_accepted }}</b></p>
+      {% endif %}
+      {% if ride.status == 'requested' and ride.driver != request.user %}
+      <form action="{% url 'ride_accept' ride.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Accept Ride</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

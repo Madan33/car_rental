@@ -1,0 +1,18 @@
+<!-- vehicle_form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if form.instance.pk %}Edit Vehicle{% else %}New Vehicle{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Edit Vehicle{% else %}New Vehicle{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+    <a href="{% url 'vehicle_list' %}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'ride/ride_base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Your Rides</h1>
+  <div class="row">
+    {% for ride in ride %}
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ride ID: {{ ride.id }}</h5>
+          <p class="card-text">Status: {{ ride.status }}</p>
+          {% if ride.driver %}
+          <p class="card-text">Driver: {{ ride.driver }}</p>
+          <p class="card-text">Date Accepted: {{ ride.date_accepted }}</p>
+          {% endif %}
+          <a href="{% url 'ride_detail' ride.pk %}" class="btn btn-primary mr-2">View Details</a>
+          <a href="{% url 'ride_update' pk=ride.pk %}" class="btn btn-secondary mr-2">Edit</a>
+          <a href="{% url 'ride_update' pk=ride.pk %}" class="btn btn-info">Update</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col">
+      <p>No rides booked yet.</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <a href="{% url 'ride_request' %}" class="btn btn-primary">Book a Ride</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends 'ride/ride_base.html' %}
+
+{% block title %}Request a Ride{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4 mb-4">Request a Ride</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="passenger">Passenger Name</label>
+      <input type="text" class="form-control" id="passenger" name="passenger" required>
+    </div>
+    <div class="form-group">
+      <label for="start_location">Start Location</label>
+      <input type="text" class="form-control" id="start_location" name="start_location" required>
+    </div>
+    <div class="form-group">
+      <label for="end_location">End Location</label>
+      <input type="text" class="form-control" id="end_location" name="end_location" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Request Ride</button>
+  </form>
+</div>
+{% endblock %}

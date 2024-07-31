@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Rent</title>
+</head>
+<body>
+    <h2>Delete Rent</h2>
+    <p>Are you sure you want to delete "{{ rent_instance.customer_name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        <a href="{% url 'rent-list' %}">Cancel</a>
+    </form>
+</body>
+</html>

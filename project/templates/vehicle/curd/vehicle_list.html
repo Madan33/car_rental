@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Vehicle List</h1>
+        <ul class="list-group mt-3">
+            {% for vehicle in vehicles %}
+                <li class="list-group-item">
+                    <a href="{% url 'vehicle_detail' vehicle.pk %}" class="text-dark">{{ vehicle.car_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'vehicle_create' %}" class="btn btn-primary mt-3">Add New Vehicle</a>
+    </div>
+
+    <!-- Bootstrap JS (optional, if you need JS functionality) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

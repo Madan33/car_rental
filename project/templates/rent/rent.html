@@ -1,0 +1,51 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+    {% if car %}
+        Rent {{ car.car_name }}
+    {% else %}
+        Create Rent
+    {% endif %}
+{% endblock title %}
+
+{% block body %}
+<main role="main" style="background-color: rgb(200, 200, 200)">
+    <section class="jumbotron text-center">
+        <div class="container">
+            {% if car %}
+                <h1 class="jumbotron-heading" style="font-size: 50px">Rent {{ car.car_name }}</h1>
+                <p style="font-size: 25px; margin-top: 30px">Details and rental options for {{ car.car_name }}</p>
+            {% else %}
+                <h2>Create Rent</h2>
+            {% endif %}
+        </div>
+    </section>
+
+    <div class="container py-5">
+        {% if car %}
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ car.image.url }}" alt="{{ car.car_name }}" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2>{{ car.car_name }}</h2>
+                    <p>{{ car.car_desc }}</p>
+                    <p>Price per Day: {{ car.price }}</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-dark">Confirm Rental</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save Rent</button>
+            </form>
+        {% endif %}
+    </div>
+</main>
+{% endblock body %}

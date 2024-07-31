@@ -1,0 +1,32 @@
+<!-- booking_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking List</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        /* Optional: Add custom styles here */
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Booking List</h1>
+        <ul class="list-group">
+            {% for booking in bookings %}
+                <li class="list-group-item">
+                    <a href="{% url 'notification_detail' booking.id %}">
+                        {{ booking.user_name }} - {{ booking.vehicle.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn9K+8dhgDKLrOYL8jP0D7fFb" crossorigin="anonymous"></script>
+</body>
+</html>

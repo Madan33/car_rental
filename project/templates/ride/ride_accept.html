@@ -1,0 +1,33 @@
+
+{% extends 'ride/ride_base.html' %}
+
+{% block title %}Accept Ride Request{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4 mb-4">Accept Ride Request</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h4>Ride ID: {{ ride.id }}</h4>
+      <p>Passenger: {{ ride.passenger }}</p>
+      <p>Start Location: {{ ride.start_location }}</p>
+      <p>End Location: {{ ride.end_location }}</p>
+      <p>Status: {{ ride.status }}</p>
+      {% if ride.status == 'requested' %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="driver">Driver Name</label>
+          <input type="text" class="form-control" id="driver" name="driver" required>
+        </div>
+        <button type="submit" class="btn btn-success">Accept Ride</button>
+      </form>
+      {% else %}
+      <p>This ride has already been accepted or completed.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

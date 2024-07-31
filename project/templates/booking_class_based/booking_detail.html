@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Detail</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Booking Detail</h1>
+        <div class="card mt-3">
+            <div class="card-body">
+                <p class="card-text"><strong>User Name:</strong> {{ booking.user_name }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ booking.email }}</p>
+                <p class="card-text"><strong>Phone Number:</strong> {{ booking.phone_number }}</p>
+                <p class="card-text"><strong>Vehicle:</strong> {{ booking.vehicle }}</p>
+                <p class="card-text"><strong>Pickup Date:</strong> {{ booking.pickup_date|date:"Y-m-d" }}</p>
+                <p class="card-text"><strong>Dropoff Date:</strong> {{ booking.dropoff_date|date:"Y-m-d" }}</p>
+                <p class="card-text"><strong>Total Amount:</strong> ${{ booking.total_amount }}</p>
+                <a href="{% url 'booking-update' booking.pk %}" class="btn btn-primary mr-2">Edit</a>
+                <form action="{% url 'booking-delete' booking.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+                <a href="{% url 'booking-list' %}" class="btn btn-secondary ml-2">Back to Booking List</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include Bootstrap JS and dependencies if needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Optionally include Popper.js for Bootstrap dropdowns -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+</html>
